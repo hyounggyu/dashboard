@@ -1,0 +1,19 @@
+{
+  "name": "xni-dashboard",
+  "version": "0.0.0",
+  "homepage": "http://hyounggyu.com/dashboard",
+  "authors": [
+    "Hyounggyu Kim <hgkim10@gmail.com>"
+  ],
+  "license": "GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.22"
+  }
+}
