@@ -17,16 +17,6 @@ app.on('window-all-closed', function() {
 // This method will be called when atom-shell has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
-  var py = require('child_process').spawn('python', [__dirname + '/scripts/hello.py'])
-
-  py.stdout.on('data', function(data) {
-    console.log('stdout:' + data);
-  });
-
-  py.stderr.on('data', function(data) {
-    console.log('stderr:' + data);
-  });
-
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600});
 
@@ -39,7 +29,5 @@ app.on('ready', function() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
-    // Kill sub process
-    py.kill('SIGINT');
   });
 });
