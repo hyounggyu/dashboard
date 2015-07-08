@@ -1,34 +1,22 @@
-<html ng-app="xniApp">
+<!DOCTYPE html>
+<html>
 <head>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="js/controllers.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XNI Dashboard</title>
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="bower_components/react/react.min.js"></script>
+  <script src="bower_components/react/JSXTransformer.js"></script>
 </head>
-<body ng-controller="ImageShiftCtrl">
-    <h1>XNI Image Shift</h1>
-    <p>Select Image Files</p>
-    <button ng-click='selectImageFiles()'>Select</button>
-    <p>{{ image_files }}</p>
-
-    <p>Select Position File</p>
-    <button ng-click='selectPositionFile()'>Select</button>
-    <p>{{ position_file }}</p>
-
-    <p>Select Destination Directory</p>
-    <button ng-click='selectDestDirectory()'>Select</button>
-    <p>{{ dest_directory }}</p>
-
-    <p>Select Background Image Files</p>
-    <button ng-click='selectBackgroundFiles()'>Select</button>
-    <p>{{ background_files }}</p>
-
-    <p>Select Dark Image Files</p>
-    <button ng-click='selectDarkFiles()'>Select</button>
-    <p>{{ dark_files }}</p>
-
-    <button ng-click='run()'>Run</button>
-
-    <button ng-click='test()'>Test</button>
-
-    <p>{{ response }}</p>
+  <div id="example"></div>
+  <script type="text/jsx">
+  React.render(
+    <h1>Hello, world!</h1>,
+    document.getElementById('example')
+  );
+  </script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
