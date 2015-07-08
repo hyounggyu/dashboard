@@ -29,5 +29,5 @@ node_modules
 # bower
 bower_components
 
-# Codekit
-config.codekit
+# jsx
+build/
