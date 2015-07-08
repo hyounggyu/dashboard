@@ -11,6 +11,31 @@ var Nav = React.createClass({
   }
 });
 
+var Modal = React.createClass({
+  render: function() {
+    //if(this.props.isOpen){
+    if(true){
+      return (
+        <div className="modal fade" id="proc_modal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Modal title</h4>
+              </div>
+              <div className="modal-body">
+                <p>One fine body&hellip;</p>
+              </div>
+              <div className="modal-footer">
+                <p>Footer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+});
+
 var RemoteViewer = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
@@ -24,6 +49,7 @@ var RemoteViewer = React.createClass({
     run.on('close', function(code) {
       console.log('child process exited with code '+code)
     })
+    $('#proc_modal').modal();
     return;
   },
   render: function() {
