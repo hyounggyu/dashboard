@@ -1,4 +1,4 @@
-var spawn = require('child_process').spawn;
+var child_process = require('child_process');
 
 var Nav = React.createClass({
   render: function() {
@@ -13,58 +13,52 @@ var Nav = React.createClass({
 
 var Modal = React.createClass({
   render: function() {
-    //if(this.props.isOpen){
-    if(true){
-      return (
-        <div className="modal fade" id="proc_modal">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h4 className="modal-title">Modal title</h4>
-              </div>
-              <div className="modal-body">
-                <p>One fine body&hellip;</p>
-              </div>
-              <div className="modal-footer">
-                <p>Footer</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
+    return (
+      <pre>{this.props.data}</pre>
+    );
   }
 });
 
 var RemoteViewer = React.createClass({
+  getInitialState: function() {
+    return {data: ''};
+  },
   handleSubmit: function(e) {
     e.preventDefault();
-    run = spawn('python', ['-m', 'datamanager', 'remoteview', '--ip=203.237.42.187', '--port=5550']);
+    run = child_process.spawn('python', ['-u', '-m', 'datamanager', 'remoteview']);
     run.stdout.on('data', function(data) {
-      console.log('stdout: '+data);
-    });
+      this.setState(function(previousState, currentProps) {
+        return {data: previousState.data + '' + data};
+      });
+    }.bind(this));
     run.stderr.on('data', function(data) {
-      console.log('stderr: '+data);
-    });
+      this.setState(function(previousState, currentProps) {
+        return {data: previousState.data + '' + data};
+      });
+    }.bind(this));
     run.on('close', function(code) {
-      console.log('child process exited with code '+code)
-    })
-    $('#proc_modal').modal();
+      this.setState(function(previousState, currentProps) {
+        return {data: previousState.data + 'child process exited with code ' + code};
+      });
+    }.bind(this));
     return;
   },
   render: function() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label for="ip">IP</label>
-          <input type="text" className="form-control" id="ip" placeholder="IP Address" />
-        </div>
-        <div className="form-group">
-          <label for="slice">Slice</label>
-          <input type="text" className="form-control" id="slice" placeholder="0:1:1" />
-        </div>
-        <button type="submit" className="btn btn-default">Run</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label for="ip">IP</label>
+            <input type="text" className="form-control" id="ip" placeholder="IP Address" />
+          </div>
+          <div className="form-group">
+            <label for="slice">Slice</label>
+            <input type="text" className="form-control" id="slice" placeholder="0:1:1" />
+          </div>
+          <button type="submit" className="btn btn-default">Run</button>
+        </form>
+        <Modal data={this.state.data} />
+      </div>
     );
   }
 });
@@ -75,7 +69,6 @@ var App = React.createClass({
       <div>
         <Nav />
         <RemoteViewer />
-        <Modal />
       </div>
     );
   }
