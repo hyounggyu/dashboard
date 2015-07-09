@@ -11,10 +11,45 @@ var Nav = React.createClass({
   }
 });
 
+/*
 var Modal = React.createClass({
   render: function() {
     return (
       <pre>{this.props.data}</pre>
+    );
+  }
+});
+<Modal data={this.state.data} />
+*/
+var Modal = ReactBootstrap.Modal;
+var Button = ReactBootstrap.Button;
+
+var Stdout = React.createClass({
+  render: function() {
+    return (
+      <div className='static-modal'>
+        <Modal
+          enforceFocus={false}
+          autoFocus={false}
+          backdrop={false}
+          animation={false}
+          container={document.body}
+          onHide={function(){}}>
+
+          <Modal.Header closeButton>
+            <Modal.Title>Modal title</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            One fine body...
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button>Close</Button>
+            <Button bsStyle='primary'>Save changes</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     );
   }
 });
@@ -57,7 +92,6 @@ var RemoteViewer = React.createClass({
           </div>
           <button type="submit" className="btn btn-default">Run</button>
         </form>
-        <Modal data={this.state.data} />
       </div>
     );
   }
@@ -69,6 +103,7 @@ var App = React.createClass({
       <div>
         <Nav />
         <RemoteViewer />
+        <Stdout showModal={true} />
       </div>
     );
   }
