@@ -1,5 +1,8 @@
 var child_process = require('child_process');
 
+var React = require('react');
+
+var ReactBootstrap = require('react-bootstrap');
 var Modal = ReactBootstrap.Modal;
 var Button = ReactBootstrap.Button;
 

@@ -1,6 +1,6 @@
 {
   "name": "xni-dashboard",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "http://hyounggyu.com/dashboard",
   "authors": [
     "Hyounggyu Kim <hgkim10@gmail.com>"
@@ -14,8 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "react": ">=0.13",
-    "react-bootstrap": ">=0.23",
     "bootstrap": ">=3.3"
   }
 }
