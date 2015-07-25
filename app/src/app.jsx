@@ -6,26 +6,11 @@ var ReactBootstrap = require('react-bootstrap');
 var Modal = ReactBootstrap.Modal;
 var Button = ReactBootstrap.Button;
 
-var StdoutModal = React.createClass({
-  close: function() {
-    return;
-  },
+var Terminal = React.createClass({
   render: function() {
     return (
-      <div>
-        <Modal show={this.props.showModal} onHide={this.close}>
-          <Modal.Header>
-            <Modal.Title>Process Stdout</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <pre>{this.props.data}</pre>
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button onClick={this.props.onHide}>Stop</Button>
-          </Modal.Footer>
-        </Modal>
+      <div className="terminal">
+        <pre className="terminal">{this.props.data}</pre>
       </div>
     );
   }
@@ -56,11 +41,11 @@ var RemoteViewForm = React.createClass({
 
 var RemoteView = React.createClass({
   getInitialState: function() {
-    return {data: '', showModal: false};
+    return {data: ''};
   },
   handleRemoteViewSubmit: function() {
     //run = child_process.spawn('python', ['-u', '-m', 'datamanager', 'remoteview']);
-    this.setState({showModal: true});
+    this.setState();
     run = child_process.spawn('python', ['-u', __dirname+'/scripts/hello.py']);
     run.stdout.on('data', function(data) {
       //process.stdout.write(''+data);
@@ -77,8 +62,7 @@ var RemoteView = React.createClass({
     run.on('close', function(code) {
       this.setState(function(previousState, currentProps) {
         return {
-          data: previousState.data + 'child process exited with code ' + code,
-          showModal: false
+          data: previousState.data + 'child process exited with code ' + code
         };
       });
     }.bind(this));
@@ -87,7 +71,7 @@ var RemoteView = React.createClass({
     return (
       <div>
         <RemoteViewForm onRemoteViewSubmit={this.handleRemoteViewSubmit} />
-        <StdoutModal data={this.state.data} showModal={this.state.showModal}/>
+        <Terminal data={this.state.data} />
       </div>
     );
   }
