@@ -1,8 +1,9 @@
 {
-  "name"    : "xni-dashboard",
-  "version" : "0.1.0",
-  "main"    : "main.js",
-  "dependencies" : {
+  "name": "xni-dashboard",
+  "version": "0.1.0",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^2.1.4",
     "react": "^0.13.3"
   }
 }
