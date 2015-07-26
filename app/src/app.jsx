@@ -22,13 +22,13 @@ var RemoteViewForm = React.createClass({
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <input type="text" id="ip" placeholder="IP Address" />
-          </div>
-          <div>
-            <input type="text" id="step" placeholder="10" />
-          </div>
-          <button className="btn" type="submit">Run</button>
+          <dl className="form">
+            <dt><label>Step</label></dt>
+            <dd><input type="text" id="step" value="10" /></dd>
+          </dl>
+          <dl className="form">
+            <dd><button className="btn" type="submit">Run</button></dd>
+          </dl>
         </form>
       </div>
     );
@@ -77,7 +77,17 @@ var App = React.createClass({
   render: function() {
     return (
       <div className="container">
-        <RemoteView />
+        <div className="columns">
+          <div className="one-fifth column">
+            <nav className="menu">
+              <a className="menu-item selected" href="#">Settings</a>
+              <a className="menu-item" href="#">RemoteView</a>
+            </nav>
+          </div>
+          <div className="four-fifths column">
+            <RemoteView />
+          </div>
+        </div>
       </div>
     );
   }
