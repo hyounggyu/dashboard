@@ -24,7 +24,7 @@ var RemoteViewForm = React.createClass({
         <form onSubmit={this.handleSubmit}>
           <dl className="form">
             <dt><label>Step</label></dt>
-            <dd><input type="text" id="step" value="10" /></dd>
+            <dd><input type="text" id="step" placeholder="10" /></dd>
           </dl>
           <dl className="form">
             <dd><button className="btn" type="submit">Run</button></dd>
@@ -73,16 +73,24 @@ var RemoteView = React.createClass({
   }
 });
 
+var Nav = React.createClass({
+  render: function() {
+    return (
+      <nav className="menu">
+        <a className="menu-item selected" href="#">Settings</a>
+        <a className="menu-item" href="#">RemoteView</a>
+      </nav>
+    )
+  }
+})
+
 var App = React.createClass({
   render: function() {
     return (
       <div className="container">
         <div className="columns">
           <div className="one-fifth column">
-            <nav className="menu">
-              <a className="menu-item selected" href="#">Settings</a>
-              <a className="menu-item" href="#">RemoteView</a>
-            </nav>
+            <Nav />
           </div>
           <div className="four-fifths column">
             <RemoteView />
