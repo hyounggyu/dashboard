@@ -9,7 +9,7 @@ var Nav = React.createClass({
   render: function() {
     return (
       <nav className="menu">
-        <a className="menu-item selected" href="#">Settings</a>
+        <a className="menu-item" onClick={this.handleClick.bind(null, "index")}>Home</a>
         <a className="menu-item" onClick={this.handleClick.bind(null, "remoteview")}>RemoteView</a>
       </nav>
     )
