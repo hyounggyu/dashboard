@@ -84,8 +84,25 @@ var Nav = React.createClass({
   }
 })
 
-var App = React.createClass({
+var Index = React.createClass({
   render: function() {
+    return (
+      <div>
+        <p>Hello World!</p>
+      </div>
+    )
+  }
+})
+
+var App = React.createClass({
+  getInitialState: function() {
+    return {route: 'index'}
+  },
+  render: function() {
+    var Child;
+    switch (this.state.route) {
+      default: Child = Index;
+    }
     return (
       <div className="container">
         <div className="columns">
@@ -93,7 +110,7 @@ var App = React.createClass({
             <Nav />
           </div>
           <div className="four-fifths column">
-            <RemoteView />
+            <Child />
           </div>
         </div>
       </div>
