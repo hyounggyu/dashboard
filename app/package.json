@@ -1,5 +1,8 @@
 {
   "name"    : "xni-dashboard",
   "version" : "0.1.0",
-  "main"    : "main.js"
+  "main"    : "main.js",
+  "dependencies" : {
+    "react": "^0.13.3"
+  }
 }

@@ -2,10 +2,6 @@ var child_process = require('child_process');
 
 var React = require('react');
 
-var ReactBootstrap = require('react-bootstrap');
-var Modal = ReactBootstrap.Modal;
-var Button = ReactBootstrap.Button;
-
 var Terminal = React.createClass({
   render: function() {
     return (
@@ -26,13 +22,13 @@ var RemoteViewForm = React.createClass({
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input type="text" className="form-control" id="ip" placeholder="IP Address" />
+          <div>
+            <input type="text" id="ip" placeholder="IP Address" />
           </div>
-          <div className="form-group">
-            <input type="text" className="form-control" id="slice" placeholder="0:1:1" />
+          <div>
+            <input type="text" id="step" placeholder="10" />
           </div>
-          <button type="submit" className="btn btn-default">Run</button>
+          <button className="btn" type="submit">Run</button>
         </form>
       </div>
     );
