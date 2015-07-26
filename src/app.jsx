@@ -16,7 +16,7 @@ var Nav = React.createClass({
       </nav>
     )
   }
-})
+});
 
 var Monitor = React.createClass({
   getInitialState: function() {
@@ -53,7 +53,7 @@ var Index = React.createClass({
       </div>
     )
   }
-})
+});
 
 var App = React.createClass({
   getInitialState: function() {
