@@ -1,6 +1,6 @@
-var child_process = require('child_process');
+var child_process = require("child_process");
 
-var React = require('react');
+var React = require("react");
 
 var Terminal = React.createClass({
   render: function() {
@@ -37,28 +37,28 @@ var RemoteViewForm = React.createClass({
 
 var RemoteView = React.createClass({
   getInitialState: function() {
-    return {data: ''};
+    return {data: ""};
   },
   handleRemoteViewSubmit: function() {
-    //run = child_process.spawn('python', ['-u', '-m', 'datamanager', 'remoteview']);
+    //run = child_process.spawn("python", ["-u", "-m", "datamanager", "remoteview"]);
     this.setState();
-    run = child_process.spawn('python', ['-u', __dirname+'/scripts/hello.py']);
-    run.stdout.on('data', function(data) {
-      //process.stdout.write(''+data);
+    run = child_process.spawn("python", ["-u", __dirname+"/scripts/hello.py"]);
+    run.stdout.on("data", function(data) {
+      //process.stdout.write(""+data);
       this.setState(function(previousState, currentProps) {
-        return {data: previousState.data + '' + data};
+        return {data: previousState.data + "" + data};
       });
     }.bind(this));
-    run.stderr.on('data', function(data) {
-      //process.stderr.write(''+data);
+    run.stderr.on("data", function(data) {
+      //process.stderr.write(""+data);
       this.setState(function(previousState, currentProps) {
-        return {data: previousState.data + '' + data};
+        return {data: previousState.data + "" + data};
       });
     }.bind(this));
-    run.on('close', function(code) {
+    run.on("close", function(code) {
       this.setState(function(previousState, currentProps) {
         return {
-          data: previousState.data + 'child process exited with code ' + code
+          data: previousState.data + "child process exited with code " + code
         };
       });
     }.bind(this));
