@@ -3,11 +3,11 @@ var $ = require("jquery");
 var CPU = React.createClass({
   render: function() {
     return (
-      <ul>
+      <p>CPU:
         {this.props.data.map(function(cpu) {
-          return <li key={cpu.cpu_id}>{cpu.cpu_percent} %</li>;
+          return <span>{cpu.cpu_percent}% </span>;
         })}
-      </ul>
+      </p>
     );
   }
 });
@@ -15,9 +15,7 @@ var CPU = React.createClass({
 var Memory = React.createClass({
   render: function() {
     return (
-      <ul>
-        <li>{this.props.data.percent} %</li>
-      </ul>
+      <p>Memory: {this.props.data.percent} %</p>
     );
   }
 });
@@ -50,9 +48,7 @@ var Monitor = React.createClass({
       <div>
         <p>Monitor</p>
         <button className="btn" type="button" onClick={this.handleSwitchBtn}>{this.state.isStarted ? 'Stop' : 'Start'}</button>
-        <p>CPU Loads</p>
         <CPU data={this.state.cpu_percents} />
-        <p>Memory</p>
         <Memory data={this.state.mem} />
       </div>
     );
