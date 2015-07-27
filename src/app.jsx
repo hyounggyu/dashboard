@@ -1,7 +1,7 @@
-var $ = require("jquery");
 var React = require("react");
 
 var RemoteView = require("./build/remoteview");
+var Monitor = require("./build/monitor");
 
 var Nav = React.createClass({
   handleClick: function(page) {
@@ -14,33 +14,6 @@ var Nav = React.createClass({
         <a className="menu-item" onClick={this.handleClick.bind(null, "index")}>Home</a>
         <a className="menu-item" onClick={this.handleClick.bind(null, "remoteview")}>RemoteView</a>
       </nav>
-    )
-  }
-});
-
-var Monitor = React.createClass({
-  getInitialState: function() {
-    return {cpu: '?'};
-  },
-  componentDidMount: function() {
-    this.timer = setInterval(this.tick, 5000);
-  },
-  componentWillUnmount: function() {
-    clearInterval(this.timer);
-  },
-  tick: function() {
-    var self = this;
-    $.getJSON('http://127.0.0.1:5000/status.json', function(result) {
-      self.setState({cpu: result.cpu_percent})
-    });
-  },
-  render: function() {
-    return (
-      <div>
-        <p>Monitor</p>
-        <p>IP: 203.237.42.187</p>
-        <p>CPU: {this.state.cpu[0]}, {this.state.cpu[1]}</p>
-      </div>
     )
   }
 });
