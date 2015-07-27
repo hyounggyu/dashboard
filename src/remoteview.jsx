@@ -38,9 +38,9 @@ var RemoteView = React.createClass({
     return {data: ""};
   },
   handleRemoteViewSubmit: function() {
-    //run = child_process.spawn("python", ["-u", "-m", "datamanager", "remoteview"]);
     this.setState({data: ""});
-    run = child_process.spawn("python", ["-u", __dirname+"/../scripts/hello.py"]);
+    run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--ip", "203.237.42.187"]);
+    //run = child_process.spawn("python", ["-u", __dirname+"/../scripts/hello.py"]);
     run.stdout.on("data", function(data) {
       //process.stdout.write(""+data);
       this.setState(function(previousState, currentProps) {
