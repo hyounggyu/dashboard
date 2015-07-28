@@ -1,11 +1,11 @@
-var React = require("react");
+import React from 'react';
 
-var ServerSetting = require("./dist/serversetting");
-var RemoteView = require("./dist/remoteview");
-var Monitor = require("./dist/monitor");
+import {RemoteView} from './dist/remoteview';
+import {ServerSetting} from './dist/serversetting';
+import {Monitor} from './dist/monitor';
 
-var App = React.createClass({
-  render: function() {
+class App extends React.Component {
+  render() {
     return (
       <div className="container">
         <h2>Server</h2>
@@ -17,6 +17,6 @@ var App = React.createClass({
       </div>
     );
   }
-});
+}
 
 React.render(<App />, document.body);

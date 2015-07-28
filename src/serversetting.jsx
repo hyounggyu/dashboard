@@ -1,10 +1,13 @@
-var ServerSetting = React.createClass({
-  handleSubmit: function(e) {
+import React from 'react';
+import {Input, ButtonInput, Panel} from 'react-bootstrap';
+
+export class ServerSetting extends React.Component {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.onServerSettingSubmit();
     return;
-  },
-  render: function() {
+  }
+  render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -19,6 +22,4 @@ var ServerSetting = React.createClass({
       </div>
     )
   }
-});
-
-module.exports = ServerSetting;
+}

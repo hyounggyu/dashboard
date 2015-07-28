@@ -1,22 +1,25 @@
-var child_process = require("child_process");
+import child_process from 'child_process';
 
-var Terminal = React.createClass({
-  render: function() {
+import React from 'react';
+import {Input, ButtonInput, Panel} from 'react-bootstrap';
+
+class Terminal extends React.Component {
+  render() {
     return (
       <div className="terminal">
         <pre className="terminal">{this.props.data}</pre>
       </div>
     );
   }
-});
+}
 
-var RemoteViewForm = React.createClass({
-  handleSubmit: function(e) {
+class RemoteViewForm extends React.Component {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.onRemoteViewSubmit();
     return;
-  },
-  render: function() {
+  }
+  render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -31,37 +34,36 @@ var RemoteViewForm = React.createClass({
       </div>
     );
   }
-});
+}
 
-var RemoteView = React.createClass({
-  getInitialState: function() {
-    return {data: ""};
-  },
-  handleRemoteViewSubmit: function() {
+export class RemoteView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: ""};
+  }
+  handleRemoteViewSubmit() {
     this.setState({data: ""});
     run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--ip", "203.237.42.187"]);
     //run = child_process.spawn("python", ["-u", __dirname+"/../scripts/hello.py"]);
-    run.stdout.on("data", function(data) {
+    run.stdout.on("data", (data) => {
       //process.stdout.write(""+data);
-      this.setState(function(previousState, currentProps) {
+      this.setState((previousState, currentProps) => {
         return {data: previousState.data + "" + data};
       });
     }.bind(this));
-    run.stderr.on("data", function(data) {
+    run.stderr.on("data", (data) => {
       //process.stderr.write(""+data);
-      this.setState(function(previousState, currentProps) {
+      this.setState((previousState, currentProps) => {
         return {data: previousState.data + "" + data};
       });
     }.bind(this));
-    run.on("close", function(code) {
-      this.setState(function(previousState, currentProps) {
-        return {
-          data: previousState.data + "child process exited with code " + code
-        };
+    run.on("close", (code) => {
+      this.setState((previousState, currentProps) => {
+        return {data: previousState.data + "child process exited with code " + code};
       });
     }.bind(this));
-  },
-  render: function() {
+  }
+  render() {
     return (
       <div>
         <RemoteViewForm onRemoteViewSubmit={this.handleRemoteViewSubmit} />
@@ -69,6 +71,4 @@ var RemoteView = React.createClass({
       </div>
     );
   }
-});
-
-module.exports = RemoteView;
+}

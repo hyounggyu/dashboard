@@ -1,7 +1,10 @@
-var $ = require("jquery");
+import $ from 'jquery';
 
-var CPU = React.createClass({
-  render: function() {
+import React from 'react';
+import {Input, ButtonInput, Panel} from 'react-bootstrap';
+
+class CPU extends React.Component {
+  render() {
     return (
       <p>CPU:
         {this.props.data.map(function(cpu) {
@@ -10,21 +13,22 @@ var CPU = React.createClass({
       </p>
     );
   }
-});
+}
 
-var Memory = React.createClass({
-  render: function() {
+class Memory extends React.Component {
+  render() {
     return (
       <p>Memory: {this.props.data.percent} %</p>
     );
   }
-});
+}
 
-var Monitor = React.createClass({
-  getInitialState: function() {
-    return {cpu_percents: [], mem: {percent: '?'}, isStarted: false};
-  },
-  handleSwitchBtn: function() {
+export class Monitor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {cpu_percents: [], mem: {percent: '?'}, isStarted: false};
+  }
+  handleSwitchBtn() {
     if (this.state.isStarted) {
       clearInterval(this.timer);
       this.setState({isStarted: false});
@@ -33,17 +37,17 @@ var Monitor = React.createClass({
       this.timer = setInterval(this.tick, 5000);
       this.setState({isStarted: true});
     }
-  },
-  updateStatus: function() {
+  }
+  updateStatus() {
     var self = this;
-    $.getJSON('http://203.237.42.187:5000/status.json', function(result) {
+    $.getJSON('http://203.237.42.187:5000/status.json', (result) => {
       self.setState(result);
     });
-  },
-  tick: function() {
+  }
+  tick() {
     this.updateStatus();
-  },
-  render: function() {
+  }
+  render() {
     return (
       <div>
         <p>Monitor</p>
@@ -53,6 +57,4 @@ var Monitor = React.createClass({
       </div>
     );
   }
-});
-
-module.exports = Monitor;
+}
