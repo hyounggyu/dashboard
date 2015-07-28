@@ -3,26 +3,6 @@ import $ from 'jquery';
 import React from 'react';
 import {Input, ButtonInput, Panel} from 'react-bootstrap';
 
-class CPU extends React.Component {
-  render() {
-    return (
-      <p>CPU:
-        {this.props.data.map(function(cpu) {
-          return <span>{cpu.cpu_percent}% </span>;
-        })}
-      </p>
-    );
-  }
-}
-
-class Memory extends React.Component {
-  render() {
-    return (
-      <p>Memory: {this.props.data.percent} %</p>
-    );
-  }
-}
-
 export class Monitor extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +14,7 @@ export class Monitor extends React.Component {
       this.setState({isStarted: false});
     } else {
       this.updateStatus();
-      this.timer = setInterval(this.tick, 5000);
+      this.timer = setInterval(() => this.updateStatus(), 5000);
       this.setState({isStarted: true});
     }
   }
@@ -44,17 +24,16 @@ export class Monitor extends React.Component {
       self.setState(result);
     });
   }
-  tick() {
-    this.updateStatus();
-  }
   render() {
     return (
       <form>
         <Input type="text" ref="port" placeholder="5000" />
-        <ButtonInput value={this.state.isStarted ? 'Stop' : 'Start'} onClick={this.handleSwitchBtn} />
+        <ButtonInput value={this.state.isStarted ? 'Stop' : 'Start'} onClick={() => this.handleSwitchBtn()} />
         <Panel>
-          <CPU data={this.state.cpu_percents} />
-          <Memory data={this.state.mem} />
+          <p>CPU: {this.state.cpu_percents.map((c) => {
+            return <span key={c.cpu_id}>{c.cpu_percent}% </span>;
+          })}</p>
+          <p>Memory: {this.state.mem.percent} %</p>
         </Panel>
       </form>
     );
