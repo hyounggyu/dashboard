@@ -1,8 +1,8 @@
 var React = require("react");
 
-var ServerSetting = require("./build/serversetting");
-var RemoteView = require("./build/remoteview");
-var Monitor = require("./build/monitor");
+var ServerSetting = require("./dist/serversetting");
+var RemoteView = require("./dist/remoteview");
+var Monitor = require("./dist/monitor");
 
 var App = React.createClass({
   render: function() {
