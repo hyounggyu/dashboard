@@ -2,17 +2,17 @@ import React from 'react';
 import {Input, ButtonInput, Panel} from 'react-bootstrap';
 
 export class ServerSetting extends React.Component {
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.onServerSettingSubmit();
-    return;
+  constructor(props) {
+    super(props);
+  }
+  handleChange(e) {
+    this.props.setServer(e.target.value);
   }
   render() {
     return (
-      <Input
-        type="text"
-        label="IP Address"
-        placeholder="127.0.0.1" />
+      <div>
+        <Input type="text" ref="hostname" label="Hostname or IP Address" placeholder={this.props.hostname} onChange={(e)=>this.handleChange(e)} />
+      </div>
     )
   }
 }

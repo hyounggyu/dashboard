@@ -1,19 +1,31 @@
 import React from 'react';
 
+import {Panel} from 'react-bootstrap';
+
 import {RemoteView} from './dist/remoteview';
 import {ServerSetting} from './dist/serversetting';
 import {Monitor} from './dist/monitor';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {hostname: '127.0.0.1'};
+  }
+  setServer(hostname) {
+    this.setState({hostname: hostname});
+  }
   render() {
     return (
       <div className="container">
-        <h2>Server</h2>
-        <ServerSetting />
-        <h2>Monitor</h2>
-        <Monitor />
-        <h2>RemoteView</h2>
-        <RemoteView />
+        <Panel header="Server Setting">
+          <ServerSetting hostname={this.state.hostname} setServer={(hostname) => this.setServer(hostname)} />
+        </Panel>
+        <Panel header="Server Monitor">
+          <Monitor hostname={this.state.hostname} />
+        </Panel>
+        <Panel header="Remote Viewer">
+          <RemoteView hostname={this.state.hostname} />
+        </Panel>
       </div>
     );
   }

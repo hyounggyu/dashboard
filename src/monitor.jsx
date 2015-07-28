@@ -19,15 +19,15 @@ export class Monitor extends React.Component {
     }
   }
   updateStatus() {
+    uri = 'http://'+this.props.hostname+':5000'+'/status.json';
     var self = this;
-    $.getJSON('http://203.237.42.187:5000/status.json', (result) => {
+    $.getJSON(uri, (result) => {
       self.setState(result);
     });
   }
   render() {
     return (
       <form>
-        <Input type="text" ref="port" placeholder="5000" />
         <ButtonInput value={this.state.isStarted ? 'Stop' : 'Start'} onClick={() => this.handleSwitchBtn()} />
         <Panel>
           <p>CPU: {this.state.cpu_percents.map((c) => {

@@ -36,7 +36,7 @@ export class RemoteView extends React.Component {
   }
   handleRemoteViewSubmit() {
     this.setState({data: ""});
-    run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--ip", "203.237.42.187"]);
+    run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--ip", this.props.hostname]);
     //run = child_process.spawn("python", ["-u", __dirname+"/../scripts/hello.py"]);
     run.stdout.on("data", (data) => {
       //process.stdout.write(""+data);
