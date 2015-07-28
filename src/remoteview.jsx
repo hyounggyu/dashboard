@@ -21,17 +21,10 @@ class RemoteViewForm extends React.Component {
   }
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <dl className="form">
-            <dt><label>Step</label></dt>
-            <dd><input type="text" id="step" placeholder="10" /></dd>
-          </dl>
-          <dl className="form">
-            <dd><button className="btn" type="submit">Run</button></dd>
-          </dl>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <Input type="test" ref="step" label="Step" placeholder="10" />
+        <ButtonInput value="Run" onClick={this.handleSubmit} />
+      </form>
     );
   }
 }

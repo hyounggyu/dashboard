@@ -49,12 +49,14 @@ export class Monitor extends React.Component {
   }
   render() {
     return (
-      <div>
-        <p>Monitor</p>
-        <button className="btn" type="button" onClick={this.handleSwitchBtn}>{this.state.isStarted ? 'Stop' : 'Start'}</button>
-        <CPU data={this.state.cpu_percents} />
-        <Memory data={this.state.mem} />
-      </div>
+      <form>
+        <Input type="text" ref="port" placeholder="5000" />
+        <ButtonInput value={this.state.isStarted ? 'Stop' : 'Start'} onClick={this.handleSwitchBtn} />
+        <Panel>
+          <CPU data={this.state.cpu_percents} />
+          <Memory data={this.state.mem} />
+        </Panel>
+      </form>
     );
   }
 }
