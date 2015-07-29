@@ -2,9 +2,9 @@ import React from 'react';
 
 import {Panel} from 'react-bootstrap';
 
-import {RemoteView} from './dist/remoteview';
-import {ServerSetting} from './dist/serversetting';
-import {Monitor} from './dist/monitor';
+import {RemoteView} from './remoteview';
+import {ServerSetting} from './serversetting';
+import {Monitor} from './monitor';
 
 class App extends React.Component {
   constructor(props) {

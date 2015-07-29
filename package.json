@@ -1,7 +1,14 @@
 {
   "name": "xni-dashboard",
   "version": "0.1.0",
-  "main": "main.js",
+  "description": "Dashboard for X-Ray Nano Imaging Beamline in Pohang Accelerator Laboratory",
+  "license": "MIT",
+  "main": "./dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyounggyu/dashboard.git"
+  },
+  "bugs": "https://github.com/hyounggyu/dashboard/issues",
   "dependencies": {
     "jquery": "^2.1.4",
     "react": "^0.13.3",
