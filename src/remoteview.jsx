@@ -12,7 +12,7 @@ export class RemoteView extends React.Component {
     this.setState({output: ""});
     let ip = this.props.hostname;
     let step = this.refs.step.getValue();
-    step = step == "" ? "10" : step; // TODO: default is 10?
+    step = step == "" ? "1" : step;
     let run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--ip="+ip, "--step="+step]);
     // TODO: form disable
     //run = child_process.spawn("python", ["-u", __dirname+"/../scripts/hello.py"]);
@@ -37,7 +37,7 @@ export class RemoteView extends React.Component {
     return (
       <div>
         <form>
-          <Input type="text" ref="step" label="Step" placeholder="10" />
+          <Input type="text" ref="step" label="Step" placeholder="1" />
           <ButtonInput value="Run" onClick={(e) => this.handleRemoteView(e)} />
         </form>
         <Panel>
