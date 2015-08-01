@@ -19,7 +19,7 @@ export class Monitor extends React.Component {
     }
   }
   updateStatus() {
-    var uri = 'http://'+this.props.hostname+':5000'+'/status.json';
+    var uri = 'http://'+this.props.hostname+':5059'+'/status.json';
     var self = this;
     $.getJSON(uri, (result) => {
       self.setState(result);
