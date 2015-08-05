@@ -10,12 +10,12 @@ export class RemoteView extends React.Component {
   }
   handleRemoteView(e) {
     this.setState({output: ""});
-    let ip = this.props.hostname;
+    let host = this.props.hostname;
     let step = this.refs.step.getValue();
     step = step == "" ? "1" : step;
     let timeout = this.refs.timeout.getValue();
     timeout = timeout == "" ? "10" : timeout;
-    let run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--ip="+ip, "--step="+step, "--timeout="+timeout]);
+    let run = child_process.spawn("python", ["-u", "-m", "xni.manage", "remoteview", "--host="+host, "--step="+step, "--timeout="+timeout]);
     // TODO: form disable
     //run = child_process.spawn("python", ["-u", __dirname+"/../scripts/hello.py"]);
     run.stdout.on("data", (data) => {
